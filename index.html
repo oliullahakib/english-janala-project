@@ -21,7 +21,7 @@
 
 <body class="poppins-font">
     <header class="bg-[#BADEFF26]">
-        <nav >
+        <nav>
             <div class="navbar px-16 shadow-sm">
                 <div class="navbar-start">
                     <div class="dropdown">
@@ -32,19 +32,18 @@
                                     d="M4 6h16M4 12h8m-8 6h16" />
                             </svg>
                         </div>
-                        <ul tabindex="0"
-                            class="menu menu-sm dropdown-content rounded-box z-1 mt-3 w-52 p-2 shadow">
+                        <ul tabindex="0" class="menu menu-sm  bg-gray-200 dropdown-content rounded-box z-1 mt-3 w-52 p-2 shadow">
                             <a class="btn btn-outline btn-primary"> <i class="fa-solid fa-circle-question"></i> FAQ</a>
                             <a class="btn btn-outline btn-primary"> <i class="fa-solid fa-book-open"></i> Learn</a>
                             <a class="btn btn-outline btn-primary"> <i class="fa-solid fa-arrow-right-from-bracket"></i>
                                 Logout</a>
                         </ul>
                     </div>
-                   <div class="flex items-center gap-1 text-xl ">
-                    <h1 class="font-semibold">English</h1>
-                    <img src="./assets/logo.png" alt="logo">
-                    <h1 class="bangla-font">জানালা</h1>
-                   </div>
+                    <div class="flex items-center gap-1 text-xl ">
+                        <h1 class="font-semibold">English</h1>
+                        <img src="./assets/logo.png" alt="logo">
+                        <h1 class="bangla-font">জানালা</h1>
+                    </div>
                 </div>
                 <div class="navbar-end hidden lg:flex space-x-3">
                     <a class="btn btn-outline btn-primary"> <i class="fa-solid fa-circle-question"></i> FAQ</a>
@@ -55,7 +54,25 @@
             </div>
         </nav>
     </header>
+    <section class="banner w-11/12 mx-auto flex flex-col md:flex-row items-center justify-between md:gap-52">
+        <div class="contant mt-5 md:mt-0 md:w-1/2 space-y-4">
+            <h1 class="text-3xl md:text-5xl font-bold"><span class="text-[#00BCFF]">English</span> is Easy!!</h1>
+            <p class="md:text-2xl font-semibold bangla-font text-[#18181B]">আজ থেকেই আপনার ভাষা শেখার যাত্রা শুরু করুন। আপনি যদি নতুন হন অথবা আপনার দক্ষতা বাড়াতে চান, আমাদের
+                Interactive Lessons আপনাকে নিয়ে যাবে অন্য একটি Level এ</p>
+                <div class="max-w-xs">
+                    <form class="flex flex-col gap-4">
+        
+                        <input type="text" class="input" placeholder="Enter Your Name" />
+                        <input type="password" class="input" placeholder="Password" />
+                        <button class="btn btn-primary max-w-40">Get Started</button>
+                    </form>
+                </div>
+        </div>
 
+        <div class="banner-img">
+            <img src="./assets/hero-student.png" alt="student">
+        </div>
+    </section>
 </body>
 
 </html>
