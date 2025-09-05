@@ -121,6 +121,9 @@ hideLoading = () => {
 document.getElementById('search-btn').addEventListener("click",async()=>{
     const url = "https://openapi.programming-hero.com/api/words/all"
     let inputValu = document.getElementById("search-input").value.toLowerCase();
+    if(!inputValu){
+        return
+    }
    const response = await fetch(url);
    const data = await response.json();
     let allWords = data.data;
