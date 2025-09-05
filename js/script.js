@@ -25,7 +25,7 @@ const lessonBtn = (lessons) => {
     lessons.forEach(lesson => {
         let div = document.createElement("div");
         div.innerHTML = `
-    <button id='lesson-btn' onclick='lessonWords(${lesson.level_no})' class="btn lesson-btn btn-outline btn-primary "> <i class="fa-solid fa-book-open"></i> Lesson-${lesson.level_no}</button>
+    <button id='lesson-btn-${lesson.level_no}' onclick='lessonWords(${lesson.level_no})' class="btn lesson-btn btn-outline btn-primary "> <i class="fa-solid fa-book-open"></i> Lesson-${lesson.level_no}</button>
    `
         lessonContainer.append(div);
     });
@@ -37,6 +37,7 @@ const lessonWords = async (level_no) => {
     let response = await fetch(url);
     let words = await response.json()
     lessonWordViwer(words.data);
+    
 
 }
 
@@ -64,7 +65,7 @@ const lessonWordViwer = (words) => {
                         <p class="my-4 max-h-6">Meaning/Pronounciation</p>
                          <h2 class="card-title text-3xl font-semibold">${word.meaning ? word.meaning : "' অর্থ পাওয়া যায়নি '"} / ${word.pronunciation ? word.pronunciation : "' উচ্চারণ পাওয়া যায়নি '"}</h2>
                         <div class="flex justify-between w-full mt-3 px-4 absolute bottom-6">
-                            <button class="btn bg-blue-100"><i class="fa-solid fa-circle-info"></i></button>
+                            <button onclick ='getWordDetail(${word.id})' class="btn bg-blue-100"><i class="fa-solid fa-circle-info"></i></button>
                             <button class="btn bg-blue-100"><i class="fa-solid fa-volume-high"></i></button>
                         </div>
                     </div>
@@ -76,4 +77,18 @@ const lessonWordViwer = (words) => {
 
 }
 
+const getWordDetail= async(id)=>{
+   let url = `https://openapi.programming-hero.com/api/word/${id}`
+    let response = await fetch(url);
+    let wordDetails= await response.json();
+    showWordDetail(wordDetails.data);
+    
+}
+const showWordDetail = (wordDetails)=>{
+    document.getElementById('main-word').innerHTML = `${wordDetails.word} (<i class="fa-solid fa-microphone-lines"></i>:${wordDetails.pronunciation})`;
+    document.getElementById('word-meaning').innerText = wordDetails.meaning;
+    document.getElementById('word-example').innerText = wordDetails.sentence;
+
+    document.getElementById('word_modal').showModal();
+}
 lessonLoder()
