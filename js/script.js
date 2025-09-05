@@ -33,6 +33,7 @@ const lessonBtn = (lessons) => {
 }
 
 const lessonWords = async (level_no) => {
+    showLoading()
     const url = `https://openapi.programming-hero.com/api/level/${level_no}`
     let response = await fetch(url);
     let words = await response.json()
@@ -51,6 +52,7 @@ const lessonWordViwer = (words) => {
                 <h1 class="text-4xl font-medium">নেক্সট Lesson এ যান</h1>
             </div>
        `
+       hideLoading()
         return
     }
     wordContainer.innerHTML = ""
@@ -73,6 +75,7 @@ const lessonWordViwer = (words) => {
             </div>
         `
         wordContainer.append(cardDiv)
+        hideLoading()
     })
 
 }
@@ -99,5 +102,14 @@ const showSynonyms = (synonymus)=>{
     })
    return element.join(" ");
     
+}
+
+showLoading = ()=>{
+    document.getElementById('loading').classList.remove('hidden')
+    document.getElementById('word-card-container').classList.add('hidden')
+}
+hideLoading = ()=>{
+    document.getElementById('word-card-container').classList.remove('hidden')
+    document.getElementById('loading').classList.add('hidden')
 }
 lessonLoder()
