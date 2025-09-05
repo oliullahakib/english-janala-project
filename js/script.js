@@ -88,7 +88,16 @@ const showWordDetail = (wordDetails)=>{
     document.getElementById('main-word').innerHTML = `${wordDetails.word} (<i class="fa-solid fa-microphone-lines"></i>:${wordDetails.pronunciation})`;
     document.getElementById('word-meaning').innerText = wordDetails.meaning;
     document.getElementById('word-example').innerText = wordDetails.sentence;
-
+     document.getElementById('synonum').innerHTML = showSynonyms(wordDetails.synonyms);
+    
     document.getElementById('word_modal').showModal();
+}
+const showSynonyms = (synonymus)=>{
+   let element = synonymus.map(synonym =>{
+        let span =document.createElement('span');
+       return span.innerHTML =`<button class="btn bg-[#EDF7FF]">${synonym}</button>`;
+    })
+   return element.join(" ");
+    
 }
 lessonLoder()
