@@ -12,13 +12,50 @@
     <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
 
     <!-- font awsome cdn -->
-     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/7.0.1/css/all.min.css" integrity="sha512-2SwdPD6INVrV/lHTZbO2nodKhrnDdJK9/kg2XD1r9uGqPo1cUbujc+IYdlYdEErWNu69gVcYgdxlmVmzTWnetw==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/7.0.1/css/all.min.css"
+        integrity="sha512-2SwdPD6INVrV/lHTZbO2nodKhrnDdJK9/kg2XD1r9uGqPo1cUbujc+IYdlYdEErWNu69gVcYgdxlmVmzTWnetw=="
+        crossorigin="anonymous" referrerpolicy="no-referrer" />
     <!-- custom css  -->
-     <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="style.css">
 </head>
 
 <body class="poppins-font">
-<h1 class="text-2xl">The English Janala</h1>
+    <header class="bg-[#BADEFF26]">
+        <nav >
+            <div class="navbar px-16 shadow-sm">
+                <div class="navbar-start">
+                    <div class="dropdown">
+                        <div tabindex="0" role="button" class="btn btn-ghost lg:hidden">
+                            <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" fill="none" viewBox="0 0 24 24"
+                                stroke="currentColor">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                    d="M4 6h16M4 12h8m-8 6h16" />
+                            </svg>
+                        </div>
+                        <ul tabindex="0"
+                            class="menu menu-sm dropdown-content rounded-box z-1 mt-3 w-52 p-2 shadow">
+                            <a class="btn btn-outline btn-primary"> <i class="fa-solid fa-circle-question"></i> FAQ</a>
+                            <a class="btn btn-outline btn-primary"> <i class="fa-solid fa-book-open"></i> Learn</a>
+                            <a class="btn btn-outline btn-primary"> <i class="fa-solid fa-arrow-right-from-bracket"></i>
+                                Logout</a>
+                        </ul>
+                    </div>
+                   <div class="flex items-center gap-1 text-xl ">
+                    <h1 class="font-semibold">English</h1>
+                    <img src="./assets/logo.png" alt="logo">
+                    <h1 class="bangla-font">জানালা</h1>
+                   </div>
+                </div>
+                <div class="navbar-end hidden lg:flex space-x-3">
+                    <a class="btn btn-outline btn-primary"> <i class="fa-solid fa-circle-question"></i> FAQ</a>
+                    <a class="btn btn-outline btn-primary"> <i class="fa-solid fa-book-open"></i> Learn</a>
+                    <a class="btn btn-outline btn-primary"> <i class="fa-solid fa-arrow-right-from-bracket"></i>
+                        Logout</a>
+                </div>
+            </div>
+        </nav>
+    </header>
+
 </body>
 
 </html>
