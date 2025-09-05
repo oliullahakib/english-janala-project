@@ -118,4 +118,17 @@ hideLoading = () => {
     document.getElementById('loading').classList.add('hidden')
 }
 
+document.getElementById('search-btn').addEventListener("click",async()=>{
+    const url = "https://openapi.programming-hero.com/api/words/all"
+    let inputValu = document.getElementById("search-input").value.toLowerCase();
+   const response = await fetch(url);
+   const data = await response.json();
+    let allWords = data.data;
+    let filterWord = allWords.filter(word =>{
+      return  word.word.toLowerCase().includes(inputValu)
+    })
+    lessonWordViwer(filterWord);
+    
+})
+
 lessonLoder()
