@@ -42,6 +42,16 @@ const lessonWords = async (level_no) => {
 
 const lessonWordViwer = (words) => {
     let wordContainer = document.querySelector('.word-card-container')
+    if(words.length ===0){
+       wordContainer.innerHTML = `
+       <div class="flex flex-col items-center justify-center col-span-3">
+                <img class="max-w-40" src="./assets/alert-error.png" alt="alert-error">
+                <p class="text-sm bangla-font text-[#79716B]">এই Lesson এ এখনো কোন Vocabulary যুক্ত করা হয়নি।</p>
+                <h1 class="text-4xl font-medium">নেক্সট Lesson এ যান</h1>
+            </div>
+       `
+        return
+    }
     wordContainer.innerHTML = ""
     words.forEach(word => {
 
