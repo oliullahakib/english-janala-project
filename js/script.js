@@ -11,9 +11,9 @@ document.querySelector('.lesson-container').addEventListener('click', (e) => {
     if (e.target.className.includes('lesson-btn')) {
         let lessonAllButton = e.target.parentNode.parentNode.querySelectorAll('.lesson-btn');
         lessonAllButton.forEach(button => {
-            button.classList.remove('bg-[#422AD5]','text-white')
+            button.classList.remove('bg-[#422AD5]', 'text-white')
         });;
-        e.target.classList.add('bg-[#422AD5]','text-white')
+        e.target.classList.add('bg-[#422AD5]', 'text-white')
     }
 
 })
@@ -38,21 +38,21 @@ const lessonWords = async (level_no) => {
     let response = await fetch(url);
     let words = await response.json()
     lessonWordViwer(words.data);
-    
+
 
 }
 
 const lessonWordViwer = (words) => {
     let wordContainer = document.querySelector('.word-card-container')
-    if(words.length ===0){
-       wordContainer.innerHTML = `
+    if (words.length === 0) {
+        wordContainer.innerHTML = `
        <div class="flex flex-col items-center justify-center col-span-3">
                 <img class="max-w-40" src="./assets/alert-error.png" alt="alert-error">
                 <p class="text-sm bangla-font text-[#79716B]">এই Lesson এ এখনো কোন Vocabulary যুক্ত করা হয়নি।</p>
                 <h1 class="text-4xl font-medium">নেক্সট Lesson এ যান</h1>
             </div>
        `
-       hideLoading()
+        hideLoading()
         return
     }
     wordContainer.innerHTML = ""
@@ -68,7 +68,7 @@ const lessonWordViwer = (words) => {
                          <h2 class="card-title text-3xl font-semibold">${word.meaning ? word.meaning : "' অর্থ পাওয়া যায়নি '"} / ${word.pronunciation ? word.pronunciation : "' উচ্চারণ পাওয়া যায়নি '"}</h2>
                         <div class="flex justify-between w-full mt-3 px-4 absolute bottom-6">
                             <button onclick ='getWordDetail(${word.id})' class="btn bg-blue-100"><i class="fa-solid fa-circle-info"></i></button>
-                            <button class="btn bg-blue-100"><i class="fa-solid fa-volume-high"></i></button>
+                            <button onclick = pronounceWord('${word.word}') class="btn bg-blue-100"><i class="fa-solid fa-volume-high"></i></button>
                         </div>
                     </div>
                 </div>
@@ -79,37 +79,43 @@ const lessonWordViwer = (words) => {
     })
 
 }
-
-const getWordDetail= async(id)=>{
-   let url = `https://openapi.programming-hero.com/api/word/${id}`
-    let response = await fetch(url);
-    let wordDetails= await response.json();
-    showWordDetail(wordDetails.data);
-    
+function pronounceWord(word) {
+    const utterance = new SpeechSynthesisUtterance(word);
+    utterance.lang = "en-EN"; // English
+    window.speechSynthesis.speak(utterance);
 }
-const showWordDetail = (wordDetails)=>{
+
+const getWordDetail = async (id) => {
+    let url = `https://openapi.programming-hero.com/api/word/${id}`
+    let response = await fetch(url);
+    let wordDetails = await response.json();
+    showWordDetail(wordDetails.data);
+
+}
+const showWordDetail = (wordDetails) => {
     document.getElementById('main-word').innerHTML = `${wordDetails.word} (<i class="fa-solid fa-microphone-lines"></i>:${wordDetails.pronunciation})`;
     document.getElementById('word-meaning').innerText = wordDetails.meaning;
     document.getElementById('word-example').innerText = wordDetails.sentence;
-     document.getElementById('synonum').innerHTML = showSynonyms(wordDetails.synonyms);
-    
+    document.getElementById('synonum').innerHTML = showSynonyms(wordDetails.synonyms);
+
     document.getElementById('word_modal').showModal();
 }
-const showSynonyms = (synonymus)=>{
-   let element = synonymus.map(synonym =>{
-        let span =document.createElement('span');
-       return span.innerHTML =`<button class="btn bg-[#EDF7FF]">${synonym}</button>`;
+const showSynonyms = (synonymus) => {
+    let element = synonymus.map(synonym => {
+        let span = document.createElement('span');
+        return span.innerHTML = `<button class="btn bg-[#EDF7FF]">${synonym}</button>`;
     })
-   return element.join(" ");
-    
+    return element.join(" ");
+
 }
 
-showLoading = ()=>{
+showLoading = () => {
     document.getElementById('loading').classList.remove('hidden')
     document.getElementById('word-card-container').classList.add('hidden')
 }
-hideLoading = ()=>{
+hideLoading = () => {
     document.getElementById('word-card-container').classList.remove('hidden')
     document.getElementById('loading').classList.add('hidden')
 }
+
 lessonLoder()
